@@ -3,6 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import ElementUi from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import Http from '@/plugins/http.js'
+Vue.use(ElementUi)
+Vue.use(Http)
+
+import '@/assets/css/base.css'
+
 
 Vue.config.productionTip = false
 
