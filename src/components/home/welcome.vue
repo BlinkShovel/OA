@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<h1>home组件</h1>
+	<div class="welcome">
+		<h1>假装有内容的欢迎页面</h1>
 	</div>
 </template>
 <script>
@@ -13,5 +13,7 @@ export default {
 }
 </script>
 <style>
-	
+	.welcome {
+		background: #fff;
+	}
 </style>
