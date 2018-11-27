@@ -58,11 +58,11 @@
   	  <el-pagination
   	    @size-change="handleSizeChange"
   	    @current-change="handleCurrentChange"
-  	    :current-page="currentPage4"
-  	    :page-sizes="[100, 200, 300, 400]"
-  	    :page-size="100"
+  	    :current-page="pagenum"
+  	    :page-sizes="[5, 10, 15, 20]"
+  	    :page-size="pagesize"
   	    layout="total, sizes, prev, pager, next, jumper"
-  	    :total="400">
+  	    :total="50">
   	  </el-pagination>
   	</div>
 	</div>
@@ -72,7 +72,9 @@ export default {
 	data() {
 		return {
 			find:'',
-			currentPage4: 4,
+			pagenum: 1,
+			pagesize:5,
+			query:'',
 			tableData3: [{
           date: '2016-05-03',
           name: '王小虎',
@@ -106,8 +108,13 @@ export default {
 		}
 	},
 	methods:{
-		getUserList () {
-
+		async getUserList () {
+			const AUTH_TOKEN = sessionStorage.getItem('token')
+			this.$http.defaults.headers.common['Authorization'] = AUTH_TOKEN
+			console.log(AUTH_TOKEN)//有值
+			console.log(`/user?pagenum=${this.pagenum}&pagesize=${this.pagesize}`)
+			const res = await this.$http.get(`/user?pagenum=${this.pagenum}&pagesize=${this.pagesize}`)
+			console.log(res)
 		},
 		handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -116,8 +123,8 @@ export default {
       console.log(`当前页: ${val}`);
     }
 	},
-	beforeCreate () {
-
+	created () {
+		this.getUserList()
 	}
 }
 </script>
