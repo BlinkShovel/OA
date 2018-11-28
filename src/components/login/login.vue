@@ -30,7 +30,7 @@
     		if (status === 200) {
     			sessionStorage.setItem('token', data.token)
     			this.$message.success(msg)
-    			this.$router.push({name:'home'})
+    			this.$router.push({name:'index'})
     		}else{
     			this.$message.error(msg)
     		}

@@ -6,12 +6,15 @@ import router from './router/router.js'
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Http from '@/plugins/http.js'
+import moment from 'moment'
 Vue.use(ElementUi)
 Vue.use(Http)
 
 import '@/assets/css/base.css'
 
-
+Vue.filter('dFormat',(v)=>{
+	return moment(v).format('YYYY-MM-DD hh:mm:ss')
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
