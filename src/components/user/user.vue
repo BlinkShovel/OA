@@ -1,10 +1,6 @@
 <template>
 	<div class="user">
-		<el-breadcrumb separator-class="el-icon-arrow-right nav">
-		  <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-		  <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-		  <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-		</el-breadcrumb>
+		<bread-nav lv1="用户管理" lv2="用户列表"></bread-nav>
 
 		<div class="searchRow">
 		  <el-input placeholder="请输入内容" v-model="query" class="input-with-select search">
@@ -133,7 +129,6 @@
 		  <el-form :model="roleForm">
 		    <el-form-item label="用户名" label-width="100px">
       		{{roleForm.username}}
-      		{{roleForm.rid}}
     		</el-form-item>
 		    <el-form-item label="角色" label-width="100px">
 		      <el-select v-model="roleForm.rid" placeholder="请选择">
@@ -198,9 +193,6 @@ export default {
 	},
 	methods:{
 		async getUserList () {
-
-			const AUTH_TOKEN = sessionStorage.getItem('token')
-			this.$http.defaults.headers.common['Authorization'] = AUTH_TOKEN
 
 			const res = await this.$http.get(`/users?
 				query=${this.query}

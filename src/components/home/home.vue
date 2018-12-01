@@ -54,11 +54,7 @@ export default {
 		homeAside
 	},
 	beforeCreate () {
-		const token = sessionStorage.getItem('token')
-		if (!token) {
-			this.$message.warning('请先登陆')
-			this.$router.push({name:'login'})
-		}
+		
 	}
 }
 </script>

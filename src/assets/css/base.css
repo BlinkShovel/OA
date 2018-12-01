@@ -11,3 +11,7 @@ ul,dl,ol,dd,dt,li {
 img {
 	vertical-align: middle;
 }
+
+* {
+	box-sizing: border-box;
+}
