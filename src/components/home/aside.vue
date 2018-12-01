@@ -7,16 +7,20 @@
       :router="true"
       @open="handleOpen"
       @close="handleClose">
-      <el-submenu index="1">
+      <el-submenu
+      v-for="item in navList" 
+      :index="''+item.order"
+      :key="item.id"
+      >
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>用户管理</span>
+          <span>{{item.authName}}</span>
         </template>
-        <el-menu-item-group>
-          <el-menu-item index="user">用户列表</el-menu-item>
+        <el-menu-item-group v-for="item2 in item.children">
+          <el-menu-item :index="item2.path">{{item2.authName}}</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-submenu index="2">
+<!--       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>权限管理</span>
@@ -60,7 +64,7 @@
         <el-menu-item-group>
         	<el-menu-item index="5-1">数据列表</el-menu-item>
         </el-menu-item-group>
-      </el-submenu>
+      </el-submenu> -->
     </el-menu>
   </el-col>
 </template>
@@ -68,7 +72,7 @@
 export default {
 	data() {
 		return {
-			
+			navList:[]
 		}
 	},
 	methods: {
@@ -77,8 +81,16 @@ export default {
   	},
   	handleClose(key, keyPath) {
   	  console.log(key, keyPath);
-  	}
-	}
+  	},
+    async getMenus () {
+      const res = await this.$http.get(`/menus`)
+      this.navList = res.data.data
+      console.log(this.navList)
+    }
+	},
+  created () {
+    this.getMenus()
+  }
 }
 </script>
 <style>

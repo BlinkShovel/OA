@@ -24,8 +24,8 @@ const router = new Router({
           component:welcome
         },
         {
-          path:'/user',
-          name:'user',
+          path:'/users',
+          name:'users',
           component:userList
         },
         {
@@ -34,13 +34,13 @@ const router = new Router({
           component:test
         },
         {
-          path:'/role',
-          name:'role',
+          path:'/roles',
+          name:'roles',
           component:role
         },
         {
-          path:'/right',
-          name:'right',
+          path:'/rights',
+          name:'rights',
           component:right
         },
         {
